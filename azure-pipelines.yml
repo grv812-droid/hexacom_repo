@@ -1,0 +1,25 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:pool_hexacom
+
+stages:
+  - stage: 
+    jobs:
+      - job: 
+        steps:
+          - task: TerraformInstaller@1
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'hexacom_svc'
+              backendAzureRmOverrideSubscriptionID: '63be3bde-51fd-4708-9e65-0492e2dce693'
+              backendAzureRmResourceGroupName: 'hexacom_rg'
+              backendAzureRmStorageAccountName: 'hexacom12221'
+              backendAzureRmContainerName: 'hexa-con'
+              backendAzureRmKey: 'hexa_statefile.tf'
