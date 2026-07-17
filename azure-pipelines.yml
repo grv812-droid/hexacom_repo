@@ -33,3 +33,19 @@ stages:
         backendAzureRmStorageAccountName: "hexacom12221"
         backendAzureRmContainerName: "hexa-con"
         backendAzureRmKey: "hexa_statefile.tfstate"
+    - task: TerraformTask@5
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+    - task: TerraformTask@5
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        environmentServiceNameAzureRM: 'hexacom_svc'
+        environmentAzureRmOverrideSubscriptionID: '63be3bde-51fd-4708-9e65-0492e2dce693'
+    - task: TerraformTask@5
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        environmentServiceNameAzureRM: 'hexacom_svc'
+        environmentAzureRmOverrideSubscriptionID: '63be3bde-51fd-4708-9e65-0492e2dce693'
