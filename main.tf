@@ -24,3 +24,8 @@ resource "azurerm_resource_group" "rg2" {
   name="rg-hexaom-qa"
   location = "eastus"
 }
+
+resource "azurerm_resource_group" "rg3" {
+  name="rg-hexaom-prod"
+  location = "westus"
+}
